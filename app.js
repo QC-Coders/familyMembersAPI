@@ -9,4 +9,4 @@ app.use('/people',jsonParser);
 app.use('/people',router);
 app.listen(3000,function() {
   console.log('Boom boom pow');
-})
+});

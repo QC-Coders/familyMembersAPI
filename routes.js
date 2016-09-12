@@ -15,10 +15,10 @@ router.get('/:id',function(req,res) {
 
 router.post('/',function(req,res) {
   var body = req.body;
-  body.id = bodyID;
+  var filteredBody = _.pick(body, 'name','age','gender');
+  filteredBody.id = bodyID;
   bodyID++;
-
-  people.push(body);
+  people.push(filteredBody);
   res.json(people);
 });
 
