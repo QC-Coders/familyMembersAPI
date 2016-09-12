@@ -27,7 +27,19 @@ router.delete('/:id',function(req,res) {
   var filterdPeople = _.without(people, matchedPerson);
   people = filterdPeople;
   res.json(matchedPerson);
-})
+});
+
+router.put('/:id',function(req, res) {
+  if(req.params) {
+    var matchedPerson = _.findWhere(people,{id:parseInt(req.params.id)});
+    //?name=Henry
+    if(req.query.name && req.query.name.trim().length > 0) {
+      matchedPerson.name = req.query.name;
+      res.json(matchedPerson);
+    }else res.status(400).json({error:"Sorry charlie, that's bad!"});
+
+  }
+});
 
 
 module.exports = router;
