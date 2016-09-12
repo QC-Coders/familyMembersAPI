@@ -1,8 +1,9 @@
-var http = require('http');
-http.createServer(function(request, response) {
-  response.writeHead(200);
-  response.write('Aww yea, we\'re in here!');
-  response.end();
-}).listen(3000,function() {
-  console.log('Server started');
+var express = require('express');
+var app = express();
+app.get('/',function(req,res) {
+  res.send('All good over here!');
 });
+
+app.listen(3000,function() {
+  console.log('Boom boom pow');
+})
