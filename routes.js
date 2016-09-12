@@ -5,12 +5,12 @@ var people = [];
 var bodyID = 1;
 
 router.get('/',function(req,res) {
-  res.send(people);
+  res.json(people);
 });
 
 router.get('/:id',function(req,res) {
   var matchedPerson = _.findWhere(people, {id:parseInt(req.params.id)});
-  res.send(matchedPerson);
+  res.json(matchedPerson);
 });
 
 router.post('/',function(req,res) {
@@ -19,8 +19,15 @@ router.post('/',function(req,res) {
   bodyID++;
 
   people.push(body);
-  res.send(people);
+  res.json(people);
 });
+
+router.delete('/:id',function(req,res) {
+  var matchedPerson = _.findWhere(people,{id:parseInt(req.params.id)});
+  var filterdPeople = _.without(people, matchedPerson);
+  people = filterdPeople;
+  res.json(matchedPerson);
+})
 
 
 module.exports = router;
